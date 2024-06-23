@@ -2,13 +2,19 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose';
+//importing routers
+import { userRouter } from './routes/Users.js'
+
 
 // express creation
 const app = express();
 
-// express middleware
+// server middleware
 app.use(express.json());
 app.use(cors());
+
+//importing userRouter file for server to use and where to use
+app.use("/auth", userRouter);
 
 
 //MongoDB connection
