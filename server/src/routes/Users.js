@@ -20,14 +20,42 @@ router.post("/register", async (req, res) => {
     if (user) {
         return res.json({ message: "User exists!" })
     }
+    // creating and hashing password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    //creating users with the username and hashed password
+    const newUser = new UserModel({ username, password: hashedPassword });
+    //saving data on the database
+    await newUser.save();
+    //message to show successful new user operation
+    res.json({ message: "User Registered Successfully!" })
 
-    const
-        //message to return the search result
-        res.json(user);
+    //message to return the search result
+    res.json(user);
 
 });
 
-router.post("/login");
+router.post("/login", async (req, res) => {
+    //check the inputs and search the database for them
+    const { username, password } = req.body;
+    const user = await UserModel.findOne({ username });
+    //show message if the user doesn't exist
+    if (!user) {
+        return res.json({ message: "User Doesn't Exist!" })
+    }
+    //if the user exists, check if the password(hashed) is correct
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    //return response based on the password validation
+    if (!isPasswordValid) {
+        return res.json({ message: "Username or password Is Incorrect" })
+    }
+    //now that the credentials match, start the login process
+    const token = jwt.sign({ id: user._id }, "secret");
+    //store the validation results in the program
+    res.json({ token, userID: user._id });
+
+
+
+});
 
 
 
