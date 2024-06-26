@@ -12,9 +12,9 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/' element={<Auth />} />
-          <Route path='/' element={<CreateRecipe />} />
-          <Route path='/' element={<SavedRecipe />} />
+          <Route path='/auth' element={<Auth />} />
+          <Route path='/create-recipe' element={<CreateRecipe />} />
+          <Route path='/saved-recipe' element={<SavedRecipe />} />
         </Routes>
       </Router>
     </div>
