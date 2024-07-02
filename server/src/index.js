@@ -4,6 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 //importing routers
 import { userRouter } from './routes/users.js';
+import { recipesRouter } from './routes/recipes.js';
 
 
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 //importing userRouter file for server to use and where to use
 app.use("/auth", userRouter);
+app.use("/recipes", recipesRouter);
 
 
 
