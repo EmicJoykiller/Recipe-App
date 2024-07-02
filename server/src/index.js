@@ -4,6 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 //importing routers
 import { userRouter } from './routes/Users.js'
+import { recipesRouter } from './routes/recipes.js';
 
 
 // express creation
@@ -15,6 +16,7 @@ app.use(cors());
 
 //importing userRouter file for server to use and where to use
 app.use("/auth", userRouter);
+app.use("/recipes", recipesRouter);
 
 
 //MongoDB connection
