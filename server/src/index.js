@@ -6,6 +6,9 @@ import mongoose from 'mongoose';
 import { userRouter } from './routes/users.js';
 import { recipesRouter } from './routes/recipes.js';
 
+require('dotenv').config();
+
+
 
 
 // express creation
@@ -22,7 +25,10 @@ app.use("/recipes", recipesRouter);
 
 
 //MongoDB connection
-mongoose.connect("mongodb+srv://nikanemami7:bmLMty4S7rUBHCfD@cluster0.6z92jtk.mongodb.net/recipes?retryWrites=true&w=majority&appName=Cluster0")
+
+
+const mongoDB = process.env.MONGODB_URI;
+mongoose.connect(mongoDB)
 
 
 // actually calling and running server
