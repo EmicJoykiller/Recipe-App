@@ -27,8 +27,6 @@ app.use("/recipes", recipesRouter);
 //MongoDB connection
 
 
-const mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB)
 
 
 // actually calling and running server
