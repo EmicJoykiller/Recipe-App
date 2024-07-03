@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
+import { Cookies } from 'react-cookie'
 import axios from "axios";
 
 export const Home = () => {
@@ -30,7 +31,7 @@ export const Home = () => {
         };
 
         fetchRecipes();
-        fetchSavedRecipes();
+        if (Cookies.access_token) fetchSavedRecipes();
     }, []);
 
     const saveRecipe = async (recipeID) => {
